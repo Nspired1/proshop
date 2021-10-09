@@ -1,13 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
+import colors from "colors";
 import products from "./data/products.js";
+import connectDB from "./config/db.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 const IP = process.env.IP;
 
-// use of protected environment variables
 dotenv.config();
+connectDB();
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -31,6 +33,7 @@ app.listen(
   PORT,
   IP,
   console.log(
-    `Server running and listening in ${process.env.NODE_ENV} mode on PORT: ${PORT} and IP: ${IP}`
+    `Server running and listening in ${process.env.NODE_ENV.toUpperCase()} mode on PORT: ${PORT} and IP: ${IP}`
+      .yellow.bold
   )
 );
