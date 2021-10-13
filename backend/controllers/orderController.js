@@ -15,8 +15,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     shippingPrice,
     totalPrice,
   } = req.body;
-  console.log("This is Order Controller");
-  console.log(req.body);
+
   if (orderItems && orderItems.length === 0) {
     res.status(400);
     throw new Error("No order items.");
@@ -32,8 +31,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
       shippingPrice,
       totalPrice,
     });
-    console.log("This is order in Order Controller");
-    console.log(order);
+
     const createdOrder = await order.save();
     res.status(201).json(createdOrder);
   }
@@ -65,7 +63,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   if (order) {
     order.isPaid = true;
     order.paidAt = Date.now();
-    // PayPal order informatino
+    // PayPal order information
     order.paymentResult = {
       id: req.body.id,
       status: req.body.status,
@@ -86,7 +84,6 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 // @access  Private
 const getMyOrders = asyncHandler(async (req, res) => {
   const orders = await Order.find({ user: req.user._id });
-
   res.json(orders);
 });
 
