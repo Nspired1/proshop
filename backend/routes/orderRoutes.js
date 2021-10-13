@@ -8,7 +8,7 @@ import {
 } from "../controllers/orderController.js";
 import { protect } from "../middleware/authMiddleware.js";
 
-// prefix is /api/users
+// prefix is /api/orders
 router.route("/").post(protect, addOrderItems);
 router.route("/myorders").get(protect, getMyOrders);
 router.route("/:id").get(protect, getOrderById);
