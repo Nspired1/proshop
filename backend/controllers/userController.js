@@ -126,6 +126,52 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Get user by ID
+// @route   DELETE /api/users/:id
+// @access  Private/Admin
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select("-password");
+
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw new Error("User not found.");
+  }
+});
+
+// @desc    Update user profile
+// @route   PUT /api/users/profile
+// @access  Private/Admin
+const updateUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  console.log("This is USER in updateUser controller");
+  console.log(user);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    // NOTE: isAdmin is a boolean, so the || operator might do funny things IF isAdmin value is NOT sent as a string
+    // one potential error is when a user is updated to "isAdmin": false
+    // needs to be "isAdmin":"false" when sending the axios request
+    // the reason is type conversion / || logic. The below statement evaluates most users to isAdmin = false. So it goes to the
+    // second half of the OR statement, which makes it true and makes a user an admin.
+    user.isAdmin = req.body.isAdmin.toString() || user.isAdmin;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
 export {
   authUser,
   getUserProfile,
@@ -133,4 +179,6 @@ export {
   updateUserProfile,
   getUsers,
   deleteUser,
+  getUserById,
+  updateUser,
 };
