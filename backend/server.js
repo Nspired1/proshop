@@ -43,9 +43,9 @@ app.use("/uploads", express.static(path.join(folder, "/uploads")));
 
 if (process.env.NODE_ENV === "production") {
   console.log("this is production");
-  app.use(express.static(path.join(folder, "../client/build")));
+  app.use(express.static(path.join(folder, "/client/build")));
   app.get("*", (req, res) =>
-    res.sendFile(path.resolve(folder, "..", "client", "build", "index.html"))
+    res.sendFile(path.resolve(folder, "client", "build", "index.html"))
   );
 } else {
   app.get("/", (req, res) => {
