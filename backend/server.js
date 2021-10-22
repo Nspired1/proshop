@@ -37,12 +37,10 @@ app.get("/api/config/paypal", (req, res) =>
 // this variable mimics dirname
 const folder = path.resolve();
 
-const __dirname = path.resolve();
 // upload images
 app.use("/uploads", express.static(path.join(folder, "/uploads")));
 
 if (process.env.NODE_ENV === "production") {
-  console.log("this is production");
   app.use(express.static(path.join(folder, "/client/build")));
   app.get("*", (req, res) =>
     res.sendFile(path.resolve(folder, "client", "build", "index.html"))
@@ -66,7 +64,7 @@ app.listen(
   PORT,
   IP,
   console.log(
-    `Server running and listening in ${process.env.NODE_ENV.toUpperCase()} mode on PORT: ${PORT} and IP: ${IP}`
+    `Server RUNNING and listening in ${process.env.NODE_ENV} mode on PORT: ${PORT} and IP: ${IP}`
       .yellow.bold
   )
 );
