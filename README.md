@@ -56,11 +56,13 @@
 
 - If you chose to install this app, after running the npm installs, create a .env file and set the following environment variables:
 
-````NODE_ENV = development
+```
+NODE_ENV = development
 PORT = 5000
 MONGO_URI = your mongodb uri
 JWT_SECRET = 'abc123'
-PAYPAL_CLIENT_ID = your paypal client id```
+PAYPAL_CLIENT_ID = your paypal client id
+```
 
 - To start only the node server at prompt in the ROOT DIRECTORY type "npm start". To start nodemon (continual saves/restarts server in dev mode) in the ROOT DIRECTORY type "npm run server". To start both the backend server and React frontend in the ROOT DIRECTORY type "npm run dev"
 
@@ -83,4 +85,3 @@ PAYPAL_CLIENT_ID = your paypal client id```
 ## :envelope: Contact
 
 - repo created by Don Spire [Nspired1](https://github.com/Nspired1), email: don.spire1@gmail.com
-````
