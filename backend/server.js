@@ -16,7 +16,7 @@ const IP = process.env.IP;
 
 dotenv.config();
 connectDB();
-app.use(express.json());
+app.use(express.json({ extended: true }));
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
