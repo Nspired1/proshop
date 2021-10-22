@@ -24,7 +24,7 @@
 
 ## :camera: Screenshots
 
-![Screenshot1](/screenshots/proshopScreenshot1.png)
+![Screenshot1](/screenshots/proShopScreenshot1.png)
 
 ## :computer: Technologies
 
