@@ -36,6 +36,8 @@ app.get("/api/config/paypal", (req, res) =>
 // dirname doesn't work in ES6 (any file with import), only works with common JS ES5.
 // this variable mimics dirname
 const folder = path.resolve();
+
+const __dirname = path.resolve();
 // upload images
 app.use("/uploads", express.static(path.join(folder, "/uploads")));
 
