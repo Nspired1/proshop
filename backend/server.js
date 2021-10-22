@@ -41,8 +41,8 @@ const __dirname = path.resolve();
 // upload images
 app.use("/uploads", express.static(path.join(folder, "/uploads")));
 
-if (process.env.NODE_ENV === "production") {
-  console.log("this is production");
+if (process.env.NODE_ENV === "development") {
+  console.log("this is development");
   app.use(express.static(path.join(__dirname, "/client/build")));
   app.get("*", (req, res) =>
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
